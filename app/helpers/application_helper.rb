@@ -7,4 +7,15 @@ module ApplicationHelper
     email = owner.nil? ? nil : owner.email
     gravatar_image_tag(email)
   end
+
+  def nodes
+    [
+      {
+        name: "node1"
+      },
+      {
+        name: "node2"
+      }
+    ]
+  end
 end
