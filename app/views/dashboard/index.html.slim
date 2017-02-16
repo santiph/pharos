@@ -30,11 +30,15 @@ div id="nodes" data-url="#{nodes_path}"
                   th Network
                   th Master
               tbody
-                = nodes.each do |n|
+                - test_nodes.each do |n|
                   tr
                     td
                       span.text-success.glyphicon.glyphicon-ok-sign aria-hidden="true"
-                    td = n[:name]
+                    td
+                      = render partial: "test", locals: { name: n[:name] }
+                    td
+                      = render partial: "test", locals: { name: "other name" }
+                    td #{n[:name]}
                     td ipsum
                     td dolor
                     td sit
