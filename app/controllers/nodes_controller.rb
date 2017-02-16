@@ -34,4 +34,13 @@ class NodesController < ApplicationController
 
   # TODO
   def destroy; end
+
+
+
+
+  def list
+  end
+
+  def add
+  end
 end

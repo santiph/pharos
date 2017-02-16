@@ -16,19 +16,14 @@ html(lang='en')
   body
     header
       = render 'shared/header'
-    = render 'shared/aside'
-    .container-fluid
+    .container
       .row
-        .col-xs-6.main
-          section
-            = render 'shared/notifications'
-            = yield
-  footer
-    .aside-footer
-    .container-footer
-      .row-0
-        .col-xs-6
-          p
-            'Created with
-            i.fa.fa-heart
-            'by the SUSE team
+        .col-xs-12
+          = yield
+        .col-xs-12
+          footer
+            p.text-center
+              span
+                'Created with
+                i.fa.fa-heart.fa-fw
+                'by the SUSE team
