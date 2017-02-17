@@ -18,7 +18,7 @@ Rails.application.routes.draw do
 
   get '/installer/options', to: 'installer#options'
   get '/installer/master', to: 'installer#master'
-  get '/nodes/add', to: 'nodes#add'
+  get '/nodes/new', to: 'nodes#new'
   get '/nodes', to: 'nodes#list'
   get '/config', to: 'config#index'
 
