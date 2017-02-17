@@ -2,6 +2,4 @@
 
 # ConfigController shows the main page.
 class ConfigController < ApplicationController
-  def index
-  end
 end
