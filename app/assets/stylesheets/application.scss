@@ -1,6 +1,9 @@
 // Vendored fonts and styles.
-@import "font-awesome";
+@import 'font-awesome';
 
 // Core libraries.
 @import 'bootstrap-sprockets';
+@import 'velum_bootstrap-variables';
 @import 'bootstrap';
+
+@import 'velum_general';

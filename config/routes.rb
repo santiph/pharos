@@ -16,11 +16,12 @@ Rails.application.routes.draw do
     root to: "auth/sessions#new"
   end
 
-  get '/installer/options', to: 'installer#options'
-  get '/installer/master', to: 'installer#master'
-  get '/nodes/new', to: 'nodes#new'
-  get '/nodes', to: 'nodes#list'
-  get '/config', to: 'config#index'
+  get '/ui-demo/1', to: 'demo#1'
+  get '/ui-demo/2', to: 'demo#2'
+  get '/ui-demo/3', to: 'demo#3'
+  get '/ui-demo/4', to: 'demo#4'
+  get '/ui-demo/5', to: 'demo#5'
+  get '/ui-demo/6', to: 'demo#6'
 
   resources :nodes, only: [:index, :show, :destroy] do
     collection do
