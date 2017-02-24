@@ -49,6 +49,7 @@
 
                 this.pollNodes();
             },
+
             pollNodes: function () {
                 var self = this;
                 self.pollingInterval = setInterval(
@@ -56,6 +57,7 @@
                         var jqxhr = $.ajax({
                             url: self.settings.nodesUrl,
                             cache: false,
+                            context: self,
                             dataType: "json"
                         }).then(
                             //On success
@@ -67,33 +69,41 @@
                     self.settings.timeoutInterval
                 );
             },
+
             stopPolling: function () {
                 clearInterval(this.pollingInterval);
             },
-            processNodes: function (nodesResponse) {
-                $( nodesResponse ).each(this.renderNode);
-            },
-            renderNode: function (node) {
-                var nodeRow = [
-                    '<tr>',
-                        '<th>' + node.id + '</th>',
-                        '<td><span aria-hidden="true" class="glyphicon glyphicon-ok-sign text-success"></span></td>',
-                        '<td>' + node.hostname + '</td>',
-                        '<td>' + node.network + '</td>',
-                        '<td>' + node.ip + '</td>',
-                        '<td>',
-                            '<div class="radio disabled">',
-                                '<label>',
-                                    '<input aria-label="Master" checked="checked" disabled="disabled"'
-                                        + ' name="master" type="radio" value="master1">',
-                                '</label>',
-                            '</div>',
-                        '</td>',
-                    '</tr>'
-                ].join();
 
-                $( this.element ).append( nodeRow );
+            processNodes: function (nodesResponse) {
+                var self = this;
+                $.each(nodesResponse, function (index, value) {
+                     self.renderNode(value);
+                });
             },
+
+            renderNode: function (node) {
+
+                if ( $(this.element).has('#node-' + node.id).length ) {
+
+                    return;
+
+                } else {
+                    var nodeRow = [
+                        '<div id="node-' + node.id + '">',
+                            '<a href="/nodes/' + node.id + '">' + node.hostname + '</a>',
+                            '<dl>',
+                                '<dt>Created at</dt>',
+                                '<dd>' + node.created_at + '</dd>',
+                                '<dt>Updated at</dt>',
+                                '<dd>' + node.updated_at + '</dd>',
+                            '</dl>',
+                        '</div>'
+                    ].join('');
+
+                    $( this.element ).append( nodeRow );
+                }
+            },
+
             handleError: function () {
                 // To be defined
             }
